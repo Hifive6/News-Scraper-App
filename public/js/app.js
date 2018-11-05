@@ -1,7 +1,7 @@
 
 
 var scrapeArticles = function scrapeArticles() {
-    $.get('/scrape').then(function (data) {
+    $.get('/scraped').then(function (data) {
         $('body').html(data);
     });
 };
@@ -10,7 +10,7 @@ var saveArticle = function saveArticle() {
     var id = $(this).data('id');
 
     $.ajax({
-        url: '/article/' + id,
+        url: '/articles/' + id,
         method: 'PUT'
     }).then(function (data) {
         location.reload();
@@ -21,7 +21,7 @@ var removeArticle = function removeArticle() {
     var id = $(this).data('id');
 
     $.ajax({
-        url: '/article/remove/' + id,
+        url: '/articles/remove/' + id,
         method: 'PUT'
     }).then(function (data) {
         location.reload();
@@ -33,7 +33,7 @@ var viewNotes = function viewNotes() {
 
     // send request to get article's notes if exist
     $.ajax({
-        url: '/article/' + articleId,
+        url: '/articles/' + articleId,
         method: 'GET'
     }).then(function (data) {
         // create modal with article id
