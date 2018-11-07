@@ -4,13 +4,12 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 var exphbs = require("express-handlebars")
 
-var axios = require("axios");
-var cheerio = require("cheerio");
+
 
 
 var db = require("./models/");
 
-var PORT = 3000;
+var PORT = process.env.PORT;
 
 var app = express();
 app.use(logger("dev"));
@@ -23,7 +22,7 @@ app.set('view engine', 'handlebars')
 
 //app.use("/", htmlRouter);
 //app.use("/", articleRouter)
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var MONGODB_URI = process.env.MONGODB_URI;
 
 mongoose.connect(MONGODB_URI);
 
