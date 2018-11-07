@@ -6,18 +6,22 @@ var scrapeArticles = function () {
     });
 };
 
-var saveArticle = function () {
+
+$(".btn-save").on("click", function(event){
+
     var id = $(this).data('id');
+    console.log(id)
 
     $.ajax({
         url: '/articles/' + id,
         method: 'PUT'
     }).then(function (data) {
-        location.reload();
-    });
-};
+        location.reload()
+})
+})
 
-var removeArticle = function () {
+
+var removeArticles = function () {
     var id = $(this).data('id');
 
     $.ajax({
@@ -93,8 +97,8 @@ var deleteNote = function () {
 };
 
 $('.scrape').on('click', scrapeArticles);
-$('.btn-save').on('click', saveArticle);
-$('.btn-remove').on('click', removeArticle);
+// $('.btn-save').on('click', saveArticles);
+$('.btn-remove').on('click', removeArticles);
 $('.btn-view-notes').on('click', viewNotes);
 // handle click events for elements created dynamically
 $(document).on('click', '.btn-save-note', saveNote);
