@@ -27,7 +27,7 @@ var MONGODB_URI = process.env.MONGODB_URI;
 mongoose.connect(MONGODB_URI);
 
 
-mongoose.connect("mongodb://localhost/nprScraped");
+// mongoose.connect("mongodb://localhost/nprScraped");
 
 // app.get("/scraped", function(req, res){
 //     axios.get("https://www.npr.org/sections/news/archive")
