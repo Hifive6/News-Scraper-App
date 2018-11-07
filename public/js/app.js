@@ -1,12 +1,12 @@
 
 
-var scrapeArticles = function scrapeArticles() {
+var scrapeArticles = function () {
     $.get('/scraped').then(function (data) {
         $('body').html(data);
     });
 };
 
-var saveArticle = function saveArticle() {
+var saveArticle = function () {
     var id = $(this).data('id');
 
     $.ajax({
@@ -17,7 +17,7 @@ var saveArticle = function saveArticle() {
     });
 };
 
-var removeArticle = function removeArticle() {
+var removeArticle = function () {
     var id = $(this).data('id');
 
     $.ajax({
@@ -28,7 +28,7 @@ var removeArticle = function removeArticle() {
     });
 };
 
-var viewNotes = function viewNotes() {
+var viewNotes = function () {
     var articleId = $(this).data('id');
 
     // send request to get article's notes if exist
@@ -37,7 +37,7 @@ var viewNotes = function viewNotes() {
         method: 'GET'
     }).then(function (data) {
         // create modal with article id
-        $('.modal-content').html('\n                <div class="modal-header">\n                    <h5 class="modal-title">' + data.title + '</h5>\n                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                    </button>\n                </div>\n                <div class="modal-body">\n                    <ul class="list-group"></ul>\n                    <textarea name="note" class="note-content"></textarea>\n                </div>\n                <div class="modal-footer">\n                    <button type="button" data-id="' + data._id + '" class="btn btn-primary btn-save-note">Save Note</button>\n                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>\n                </div>');
+        $('.modal-content').html('\n<div class="modal-header">\n                    <h5 class="modal-title">' + data.title + '</h5>\n                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n                    <span aria-hidden="true">&times;</span>\n                    </button>\n                </div>\n                <div class="modal-body">\n                    <ul class="list-group"></ul>\n                    <textarea name="note" class="note-content"></textarea>\n                </div>\n                <div class="modal-footer">\n                    <button type="button" data-id="' + data._id + '" class="btn btn-primary btn-save-note">Save Note</button>\n                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>\n                </div>');
 
         var totalNotes = data.note.length;
 
@@ -59,7 +59,7 @@ var viewNotes = function viewNotes() {
     });
 };
 
-var saveNote = function saveNote() {
+var saveNote = function () {
     var id = $(this).data('id');
     var content = $('.note-content').val().trim();
 
@@ -80,7 +80,7 @@ var saveNote = function saveNote() {
     }
 };
 
-var deleteNote = function deleteNote() {
+var deleteNote = function () {
     var id = $(this).data('id');
 
     $.ajax({
@@ -93,9 +93,9 @@ var deleteNote = function deleteNote() {
 };
 
 $('.scrape').on('click', scrapeArticles);
-    $('.btn-save').on('click', saveArticle);
-    $('.btn-remove').on('click', removeArticle);
-    $('.btn-view-notes').on('click', viewNotes);
-    // handle click events for elements created dynamically
-    $(document).on('click', '.btn-save-note', saveNote);
-    $(document).on('click', '.material-icons', deleteNote);
+$('.btn-save').on('click', saveArticle);
+$('.btn-remove').on('click', removeArticle);
+$('.btn-view-notes').on('click', viewNotes);
+// handle click events for elements created dynamically
+$(document).on('click', '.btn-save-note', saveNote);
+$(document).on('click', '.material-icons', deleteNote);
