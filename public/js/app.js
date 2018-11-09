@@ -8,7 +8,7 @@ var scrapeArticles = function () {
 
 
 $(".btn-save").on("click", function(event){
-
+    console.log("hello")
     var id = $(this).data('id');
     console.log(id)
 
